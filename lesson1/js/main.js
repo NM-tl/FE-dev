@@ -11,8 +11,8 @@ console.log('**************')
 console.log('Task v2')
 console.log('--------------------')
 const p = Math.PI;
-let r = 10;
-let h = 20;
+const r = 10;
+const h = 20;
 
 console.log('Обьем цилиндра с площадью основы S =', String(p), 'радиусом R =', String(r), 'и высотой H =', String(h), 'равен:')
 console.log('--------------------')
@@ -29,6 +29,6 @@ function getCounter() {
     }
 }
 
-let counter = getCounter();
-console.log(counter())
-console.log(counter())
+const Counter = getCounter();
+console.log(Counter())
+console.log(Counter())
