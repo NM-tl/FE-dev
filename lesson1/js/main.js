@@ -32,3 +32,18 @@ function getCounter() {
 const Counter = getCounter();
 console.log(Counter())
 console.log(Counter())
+
+
+// Optimization 
+
+const Line = '-------------------';
+const Star = '**************';
+
+console.log(Star)
+console.log('Task v3')
+console.log(Line)
+console.log('Обьем цилиндра с площадью основы S =', Math.PI, 'радиусом R =', 10, 'и высотой H =', 20, 'равен:')
+console.log(Line)
+console.log('V =', Math.PI * Math.pow(10, 2) * 20)
+console.log(Line)
+console.log('.end')
