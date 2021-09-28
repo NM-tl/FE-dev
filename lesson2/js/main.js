@@ -11,19 +11,19 @@ let kiwiCount;
 
 const choice = prompt('Do you want fruits?', 'Type "yes"😉');
 
-function questionFruitPrice(fruit, price, fruitCount) {
-    const fruitTooked = prompt(`Do you want ${fruit}?`);
-
-    if (fruitTooked === 'yes') {
-         fruitCount = prompt(`Enter count of ${fruit}`)
-
-        if(!Number.isNaN(Number(fruitCount))){
-            return Number(fruitCount) * price || 0;
-        }
-        return 0
-    }
-    return 0
-}
+//function questionFruitPrice(fruit, price, fruitCount) {
+//   const fruitTooked = prompt(`Do you want ${fruit}?`);
+//
+//    if (fruitTooked === 'yes') {
+//         fruitCount = prompt(`Enter count of ${fruit}`)
+//
+//        if(!Number.isNaN(Number(fruitCount))){
+//            return Number(fruitCount) * price || 0;
+//        }
+//        return 0
+//    }
+//    return 0
+//}
 
 if (choice === 'yes') {
     alert( `Ok, let's start! 😉` ); 
