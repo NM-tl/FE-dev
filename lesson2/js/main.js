@@ -3,63 +3,94 @@ const applePrice = 10;
 const orangePrice = 12; 
 const kiwiPrice = 15;
 
+let appleCount;
+let orangeCount; 
+let kiwiCount;
 
-let choice = prompt(`Do you want fruits?`, `Type "yes"😉`);
 
-if (choice == `yes`) {
-  alert( `Ok, let's start! 😉` );
-  let appleTooked = prompt(`Do you want 🍎?`);
-    if (appleTooked == `yes`) {
-        var appleCount = prompt(`Enter count of 🍎`)
-        var appleResult = +appleCount + applePrice;
+
+const choice = prompt('Do you want fruits?', 'Type "yes"😉');
+
+function questionFruitPrice(fruit, price, fruitCount) {
+    const fruitTooked = prompt(`Do you want ${fruit}?`);
+
+    if (fruitTooked === 'yes') {
+         fruitCount = prompt(`Enter count of ${fruit}`)
+
+        if(!Number.isNaN(Number(fruitCount))){
+            return Number(fruitCount) * price || 0;
         }
-            let orangeTooked = prompt(`Do you want 🍊?`);
-            if (orangeTooked == `yes`) {
-                var orangeCount = prompt(`Enter count of 🍊`) 
-                var orangeResult = +orangeCount + orangePrice; 
-            }
-                let kiwiTooked = prompt(`Do you want 🥝?`);
-                if (kiwiTooked == `yes`) {
-                    var kiwiCount = prompt(`Enter count of 🥝`) 
-                    var kiwiResult = +kiwiCount + kiwiPrice; 
-                }           
+        return 0
+    }
+    return 0
+}
+
+if (choice === 'yes') {
+    alert( `Ok, let's start! 😉` ); 
+
+
+    const appleTooked = prompt(`Do you want 🍎?`);
+
+    if (appleTooked === 'yes') {
+        appleCount = prompt(`Enter count of 🍎`)
+
+        if(!Number.isNaN(Number(appleCount))){
+            price += Number(appleCount) * applePrice;
+        }
+    }
+            
+    const orangeTooked = prompt(`Do you want 🍊?`);
+
+    if (orangeTooked === `yes`) {
+        orangeCount = prompt(`Enter count of 🍊`) 
+
+        if(Number.isNaN(Number(orangeCount))){
+            price += Number(orangeCount) * orangePrice; 
+        }
+    }
+    
+    kiwiTooked = prompt(`Do you want 🥝?`);
+
+    if (kiwiTooked === `yes`) {
+        kiwiCount = prompt(`Enter count of 🥝`) 
+
+        if(Number.isNaN(Number(kiwiCount))){
+            price += Number(kiwiCount) * kiwiPrice; 
+        }
+    }
+                 
 } else {
   alert( `Oh, bye 😔` );
 }
 
-TotalPrice = appleResult + orangeResult + kiwiResult;
-console.log(`totalPrice:`,TotalPrice);
 
-let shopCart = [appleResult, orangeResult, kiwiResult];
-console.log(`applePrice:`, shopCart[0]);
-console.log(`orangePrice:`,shopCart[1]);
-console.log(`kiwiPrice:`,shopCart[2]);
+console.log(`totalPrice:`, price);
 
 
 document.write(`
     <div class="cart">
-        <div class="cart-info">
+        <div class="cart__info">
             <table>
-                <tr>
+                <tr class="cart__info header">
                     <td>🍴Product</td>
                     <td>💵Price:</td>
                 </tr>
                 <tr>
-                    <td>🍎Apples <span class="product-amount">amount(${appleCount})</span></td>
-                    <td>${shopCart[0]}</td>
+                    <td>🍎Apples <span class="product__amount">amount(${appleCount})</span></td>
+                    <td>${applePrice}</td>
                 </tr>
                 <tr>
-                    <td>🍊Oranges <span class="product-amount">amount(${orangeCount})</span></td>
-                    <td>${shopCart[1]}</td>
+                    <td>🍊Oranges <span class="product__amount">amount(${orangeCount})</span></td>
+                    <td>${orangePrice}</td>
                 </tr>
                 <tr>
-                    <td>🥝Kiwi <span class="product-amount">amount(${kiwiCount})</span></td>
-                    <td>${shopCart[2]}</td>
+                    <td>🥝Kiwi <span class="product__amount">amount(${kiwiCount})</span></td>
+                    <td>${kiwiPrice}</td>
                 </tr>
             </table>    
         </div>
-        <div class="cart-total">
-            <h1>🧾${TotalPrice}</h1>
+        <div class="cart__total">
+            <h1>🧾Final price is ${price}</h1>
         </div>
     </div>
 `);
