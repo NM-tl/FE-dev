@@ -3,11 +3,6 @@ const applePrice = 10;
 const orangePrice = 12; 
 const kiwiPrice = 15;
 
-let appleCount;
-let orangeCount; 
-let kiwiCount;
-
-
 
 const choice = prompt('Do you want fruits?', 'Type "yes"😉');
 
@@ -34,21 +29,21 @@ document.write(`
                     <td>💵Price:</td>
                 </tr>
                 <tr>
-                    <td>🍎Apples <span class="product__amount">amount(${appleCount})</span></td>
-                    <td>${applePrice}</td>
+                    <td>🍎Apples <span class="product__amount">amount()</span></td>
+                    <td></td>
                 </tr>
                 <tr>
-                    <td>🍊Oranges <span class="product__amount">amount(${orangeCount})</span></td>
-                    <td>${orangePrice}</td>
+                    <td>🍊Oranges <span class="product__amount">amount()</span></td>
+                    <td></td>
                 </tr>
                 <tr>
-                    <td>🥝Kiwi <span class="product__amount">amount(${kiwiCount})</span></td>
-                    <td>${kiwiPrice}</td>
+                    <td>🥝Kiwi <span class="product__amount">amount()</span></td>
+                    <td></td>
                 </tr>
             </table>    
         </div>
         <div class="cart__total">
-            <h1>🧾Final price is ${price}</h1>
+            <h1>🧾Final price is </h1>
         </div>
     </div>
 `);
