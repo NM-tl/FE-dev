@@ -1,40 +1,33 @@
-userName = prompt('Enter name');
-userName = !userName ? 'not valid Name, ' : userName.trim();
-console.log(userName);
+let name = prompt('Enter "Name"');
+name = name && name.trim() || '"Name" is not valid ';
+console.log(name);
 
-userSurname = prompt('Enter surname');
-userSurname = !userSurname || userSurname==='null' ? 'not valid Surname' : userSurname.trim(); 
-console.log(userSurname);
+let surname = prompt('Enter "Surname"');
+surname = surname && surname.trim() || 'Surname" is not valid "';
+console.log(surname);
 
-userEmail = prompt('Enter email');
-userEmail = !userEmail ? '' : userEmail.replaceAll().toLowerCase();
+let email = prompt('Enter "email"');
+email = !email ? '' : email.replaceAll(' ', '').toLowerCase();
 
-if(userEmail.startsWith('@')){
-    userEmail = `not valid email <b>${userEmail}</b> (symbol @ find in first place)`;
-}else if(userEmail.endsWith('@')){
-    userEmail = `not valid email <b>${userEmail}</b> (symbol @ find in last place)`;
-}else if(!userEmail.includes('@')){
-    userEmail = 'Email is not valid, not include @';
+if (email.startsWith('@')) {
+    email = `not valid email <b>${email}</b> (symbol @ find in first place)`;
+} else if (email.endsWith('@')) {
+    email = `not valid email <b>${email}</b> (symbol @ find in last place)`;
+} else if (!email.includes('@')) {
+    email = '"Email" is not valid, not include @';
 }
+console.log(email);
 
-console.log(userEmail);
+let yearOfBirth = prompt('Enter your year of birth');
+yearOfBirth = yearOfBirth && yearOfBirth.replaceAll(' ', '');
+yearOfBirth = yearOfBirth.length === 4 ? yearOfBirth : '"Age" is not valid';
 
-// какие есть еще варианты переписать yearOfBirth ? 
-yearOfBirth = prompt('Enter your year of birth');
-age = '';
-
-yearOfBirth = !yearOfBirth || yearOfBirth.length <= 3 ? 'Age is not valid' : yearOfBirth.trim();
-age = yearOfBirth;
-
-if(!isNaN(yearOfBirth)){
-    age = new Date().getFullYear()-yearOfBirth;
-}
-console.log(age)
+let age = !Number.isNaN(Number(yearOfBirth)) ? new Date().getFullYear() - yearOfBirth : '"Age" is not valid';
 
 document.write(`
     <ul>
-        <li>Full name: ${userName} ${userSurname}</li>
-        <li>Email: ${userEmail}</li>
+        <li>Full name: ${name} ${surname}</li>
+        <li>Email: ${email}</li>
         <li>Age: ${age}</li>
     </ul>
 `);
