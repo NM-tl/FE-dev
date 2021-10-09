@@ -1,10 +1,8 @@
 let name = prompt('Enter "Name"');
-name = name && name.trim() || '"Name" is not valid ';
-console.log(name);
+name = name && name.trim() || '"Name" is not valid, ';
 
 let surname = prompt('Enter "Surname"');
 surname = surname && surname.trim() || 'Surname" is not valid "';
-console.log(surname);
 
 let email = prompt('Enter "email"');
 email = !email ? '' : email.replaceAll(' ', '').toLowerCase();
@@ -16,18 +14,19 @@ if (email.startsWith('@')) {
 } else if (!email.includes('@')) {
     email = '"Email" is not valid, not include @';
 }
-console.log(email);
 
 let yearOfBirth = prompt('Enter your year of birth');
-yearOfBirth = yearOfBirth && yearOfBirth.replaceAll(' ', '');
-yearOfBirth = yearOfBirth.length === 4 ? yearOfBirth : '"Age" is not valid';
+yearOfBirth = !yearOfBirth || yearOfBirth.length <= 3 ? '"Age" is not valid' : yearOfBirth.replaceAll(' ', '');
 
-let age = !Number.isNaN(Number(yearOfBirth)) ? new Date().getFullYear() - yearOfBirth : '"Age" is not valid';
+let age = !isNaN(Number(yearOfBirth)) ? new Date().getFullYear() - yearOfBirth : '"Age" is not valid';
 
 document.write(`
-    <ul>
-        <li>Full name: ${name} ${surname}</li>
-        <li>Email: ${email}</li>
-        <li>Age: ${age}</li>
-    </ul>
+    <div class="profile">
+        <div class="profile__header">User profile</div>
+        <ul>
+            <li>🙂 Full name: ${name} ${surname}</li>
+            <li>📧 Email: ${email}</li>
+            <li>📅 Age: ${age}</li>
+        </ul>
+    </div>    
 `);
