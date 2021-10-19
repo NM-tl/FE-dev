@@ -68,7 +68,7 @@ let potato = confirm('Would you like potato?')
 // Как сделать метку на toStart - если size = !size
 
 if(potato === true) {
-    toStart: while(size = prompt('Choose potato size: small/middle/big')) {
+    while(size = prompt('Choose potato size: small/middle/big')) {
         switch (size) {
             case 'small':
                 size = 'small'
@@ -84,7 +84,6 @@ if(potato === true) {
                 break;
             default:
                 size = !size || null;
-                continue toStart;
         }
     }
     size = size.toLowerCase().replaceAll(' ', '')
