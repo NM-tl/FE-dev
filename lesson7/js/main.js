@@ -23,8 +23,6 @@ const suits = (suit, className, imagePath) => `
 
 const ranks = [{name:'J', image: 'images/jack.svg'}, {name:'Q', image: 'images/queen.svg'}, {name:'K', image: 'images/king.svg'}, {name:'T'}]
 
-console.log(ranks[3]);
-
 const cardsOfNumber = Array.from(Array(9), (_, index) => suits(index + 2))
 
 const cardsOfRank = ranks.map((rank) => suits(rank.name, 'card--person', rank.image))
