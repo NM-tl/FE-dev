@@ -1,7 +1,7 @@
 const suits = (suit, className, imagePath) => `
 <div class="card ${className || ''}">
-        <div class="card__info">${suit}<img src="../images/clubs.svg" alt="clubs"></div>
-        <img class="person" src="images/clubs.svg" alt="clubs">
+        <div class="card__info">${suit}<img src="images/clubs.svg" alt="clubs"></div>
+        <img class="person" src="${imagePath || 'images/clubs.svg'}" alt="clubs">
         <div class="card__info">${suit}<img src="images/clubs.svg" alt="clubs"></div>
 </div>
 <div class="card ${className || ''}">
@@ -11,19 +11,19 @@ const suits = (suit, className, imagePath) => `
 </div>
 <div class="card ${className || ''}">
     <div class="card__info">${suit}<img src="images/diamonds.svg" alt="diamonds"></div>
-    <img class="person" src="images/diamonds.svg" alt="diamonds">
+    <img class="person" src="${imagePath || 'images/diamonds.svg'}" alt="diamonds">
     <div class="card__info">${suit}<img src="images/diamonds.svg" alt="diamonds"></div>
 </div>
 <div class="card ${className || ''}">
     <div class="card__info">${suit}<img src="images/hearts.svg" alt="hearts"></div>
-    <img class="person" src="images/hearts.svg" alt="hearts">
+    <img class="person" src="${imagePath || 'images/hearts.svg'}" alt="hearts">
     <div class="card__info">${suit}<img src="images/hearts.svg" alt="hearts"></div>
 </div>
 `
 
-const ranks = [{name:'J', image: 'images/spades.svg'}, 'Q', 'K', 'T']
+const ranks = [{name:'J', image: 'images/jack.svg'}, {name:'Q', image: 'images/queen.svg'}, {name:'K', image: 'images/king.svg'}, {name:'T'}]
 
-console.log(ranks);
+console.log(ranks[3]);
 
 const cardsOfNumber = Array.from(Array(9), (_, index) => suits(index + 2))
 
@@ -38,6 +38,3 @@ document.addEventListener('DOMContentLoaded', () => {
         wrapper.innerHTML = deck
     }
 })
-
-
-
