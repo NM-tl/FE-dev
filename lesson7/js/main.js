@@ -1,4 +1,4 @@
-const suits = (suit, className) => `
+const suits = (suit, className, imagePath) => `
 <div class="card ${className || ''}">
         <div class="card__info">${suit}<img src="../images/clubs.svg" alt="clubs"></div>
         <img class="person" src="images/clubs.svg" alt="clubs">
@@ -6,7 +6,7 @@ const suits = (suit, className) => `
 </div>
 <div class="card ${className || ''}">
     <div class="card__info">${suit}<img src="images/spades.svg" alt="spades"></div>
-    <img class="person" src="images/spades.svg" alt="spades">
+    <img class="person" src="${imagePath || 'images/spades.svg'}" alt="spades">
     <div class="card__info">${suit}<img src="images/spades.svg" alt="spades"></div>
 </div>
 <div class="card ${className || ''}">
@@ -21,24 +21,15 @@ const suits = (suit, className) => `
 </div>
 `
 
-const ranks = ['J', 'Q', 'K', 'T']
+const ranks = [{name:'J', image: 'images/spades.svg'}, 'Q', 'K', 'T']
+
+console.log(ranks);
 
 const cardsOfNumber = Array.from(Array(9), (_, index) => suits(index + 2))
 
-const cardsOfRank = ranks.map((rank) => suits(rank, 'card--person'))
+const cardsOfRank = ranks.map((rank) => suits(rank.name, 'card--person', rank.image))
 
 const deck = [...cardsOfNumber, ...cardsOfRank].join('')
-
-// for(i=0; i<deck.length; i++){
-//     if(i === 0){
-//         value = `<img class="person" src="images/jack.svg" alt="hearts">`
-//     }else {
-//         value = `<img className="person" src="images/hearts.svg" alt="hearts">`
-//     }
-// }
-
-console.log(deck);
-
 
 document.addEventListener('DOMContentLoaded', () => {
     const wrapper = document.querySelector('.wrapper')
