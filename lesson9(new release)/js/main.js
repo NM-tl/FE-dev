@@ -36,6 +36,6 @@ function buildForm(arr, str) {
   )}</table>`;
 }
 
-document.write(buildForm(animals, 'Test'));
+document.write(buildForm(animals, 'Animals'));
 document.write(buildForm(food, 'Food'));
 document.write(buildForm(universes, 'Universes'));
