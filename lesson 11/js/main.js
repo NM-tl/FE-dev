@@ -9,41 +9,19 @@ const tuesday = [
   ['A whole lot of nothing', 60],
 ];
 
-const mondayTasks = [];
-const tuesdayTasks = [];
+const mondayTime = [];
+const mondayAmount = [];
+const tuesdayTime = [];
+const tuesdayAmount = [];
 
-// function modifyArr(arr, i, cur) {
-//   arr.forEach((el, index, arr) => {
-//     el[1] /= 60;
-//     arr.push(el);
-//   });
-//   arr.map((el) => {
-//     if (el[1] <= 2) {
-//       el[1] *= amount;
-//     }
-//     return el;
-//   });
-// }
-//
-// modifyArr(mondayTasks);
-//
-// console.log(mondayTasks);
+let mondayTime = monday.map(
+    function (el, index, arr){
+      const hour = el[1] / 2;
+      mondayTime.push(el[1]);
+    }
+)
+console.log(mondayTime);
 
-
-monday.forEach((el, index, arr) => {
-  el[1] /= 60;
-  mondayTasks.push(el);
-});
-
-mondayTasks.map((el, index, arr) => {
-  if (el[1] <= 2) {
-    el[1] *= amount;
-  }
-  return el;
-  mondayTasks.push(el);
-});
-
-console.log(mondayTasks);
 
 // const test = tuesday.reduce((acc, cur) => {
 //   const hour = cur[1] / 60;
