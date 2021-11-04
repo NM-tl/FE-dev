@@ -9,34 +9,52 @@ const tuesday = [
   ['A whole lot of nothing', 60],
 ];
 
-const mondayTime = [];
-const mondayAmount = [];
-const tuesdayTime = [];
-const tuesdayAmount = [];
+function arrModify(arr, salary = amount) {
+  const array = [];
+  const hour = 60;
 
-let mondayTime = monday.map(
-    function (el, index, arr){
-      const hour = el[1] / 2;
-      mondayTime.push(el[1]);
+  arr.forEach((el) => {
+    const [task, minute] = el;
+    const time = minute / hour;
+
+    if (time <= 2) {
+      array.push([task, time, time * salary]);
     }
-)
-console.log(mondayTime);
+  });
 
+  return array;
+}
 
-// const test = tuesday.reduce((acc, cur) => {
-//   const hour = cur[1] / 60;
-//
-//   if (hour <= 2) {
-//     // eslint-disable-next-line no-param-reassign
-//     acc = [...acc, [...cur, hour * amount]];
-//   }
-//   return acc;
-// }, []);
-//
-// console.log(test);
-//
-// const arr = [1, 2, 3, 4, 5];
-//
-// const ts = arr.reduce((acc, item) => acc + item, 0);
-//
-// console.log(ts);
+const newArr = arrModify(monday).concat(arrModify(tuesday));
+
+const salary = (...arrays) => {
+  const concated = arrays.reduce((acc, cur) => acc.concat(cur), []);
+
+  return concated.reduce((acc, curr) => acc + (curr[2] || 0), 0);
+};
+
+const mySalary = salary(arrModify(monday), arrModify(tuesday));
+
+const TRs = (array) =>
+  array
+    .map(
+      (el) => `
+        <tr>
+            <td><span class="label">Task name:</span> ${el[0]}</td>
+            <td><span class="label">Taks duration:</span> ${el[1]}h</td>
+            <td><span class="label">Task amount:</span> $${el[2]}</td>
+        </tr>
+`,
+    )
+    .join('');
+
+document.write(`
+    <table>
+        <th>
+            ${TRs(newArr)}
+            <tr>
+                <td><span class="label">Total amount:</span> ${mySalary}$</td>
+            </tr>
+        </th>
+    </table>    
+`);
