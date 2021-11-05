@@ -35,26 +35,26 @@ const salary = (...arrays) => {
 
 const mySalary = salary(arrModify(monday), arrModify(tuesday));
 
-const TRs = (array) =>
-  array
-    .map(
-      (el) => `
-        <tr>
-            <td><span class="label">Task name:</span> ${el[0]}</td>
-            <td><span class="label">Taks duration:</span> ${el[1]}h</td>
-            <td><span class="label">Task amount:</span> $${el[2]}</td>
-        </tr>
-`,
-    )
-    .join('');
+const taskInfo = ['Task name: ', 'Task duration: ', 'Task amount: $', 'Total amount: $'];
 
-document.write(`
-    <table>
-        <th>
-            ${TRs(newArr)}
-            <tr>
-                <td><span class="label">Total amount:</span> ${mySalary}$</td>
-            </tr>
-        </th>
-    </table>    
-`);
+const buildTd = (td, taskName) =>
+  `<td><span class="label">${taskName ? `${taskName}` : ''}</span>${td}</td>`;
+
+const buildTdList = (tds, tasks = taskInfo) =>
+  tds.map((item, index) => buildTd(item, tasks[index])).join('');
+
+const buildTr =
+  (tasks = taskInfo) =>
+  (tr, index, array) =>
+    `<tr>${buildTdList(
+      tr,
+      index + 1 === array.length ? tasks.slice(-1) : tasks,
+    )}</tr>`;
+
+const buildTrList = (trs, tasks = taskInfo) => trs.map(buildTr(tasks));
+
+function buildForm(arr) {
+  return `<table>${buildTrList([...arr, [mySalary]]).join('')}</table>`;
+}
+
+document.write(`${buildForm(newArr)}`);
