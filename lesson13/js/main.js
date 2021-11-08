@@ -13,9 +13,8 @@ obj = {
 
 newObj = {};
 
-
-const covertV2 = (object, container) => Object.entries(object).reduce((acc, [key, value]) => {
-    typeof value === 'object' ? covertV2(value, acc) : container ? container[key] = value : acc[key] = value
+const convertV2 = (object, container) => Object.entries(object).reduce((acc, [key, value]) => {
+    typeof value === 'object' ? convertV2(value, acc) : container ? container[key] = value : acc[key] = value
 
     return acc
 }, {})
@@ -30,14 +29,7 @@ function convert(object) {
     return newObj;
 };
 
-convert(obj)
-
-console.log(covertV2(obj))
-
-// let arr = Object.keys(obj).map(function (key) { return obj[key]; });
-// console.log(arr);
-
-function convert3(object) {
+function convertV3(object) {
     const copied = {}
 
     for (let key in object) {
@@ -54,6 +46,6 @@ function convert3(object) {
     return Object.assign({}, copied)
 }
 
-const ee = convert3(obj);
-
-console.log(ee)
+console.log(convert(obj));
+console.log(convertV2(obj));
+console.log(convertV3(obj));
