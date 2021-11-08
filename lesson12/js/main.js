@@ -41,15 +41,12 @@ let total = usersFiltered
         }, 0
     );
 
-
-
 redTeam = usersFiltered
     .map(
         function (redteam) {
             return `<td>${capitalizeFirstLetter(redteam[0])}</td>`
         }
     ).join('');
-
 
 document.write(`
     <table>
@@ -58,9 +55,9 @@ document.write(`
            <tr><td>${usersQuestion.join('')}</td></tr>
         </tbody>
         <tfoot>
+            <tr><td class="hero">Red Team: </td></tr>
             <tr>${redTeam}</tr>
-            <tr><td>Final summ: ${total}</td></tr>   
-        </tfoot>
-       
+            <tr><td class="hero">Final summ: ${total} points</td></tr>   
+        </tfoot>      
     </table>
 `)
