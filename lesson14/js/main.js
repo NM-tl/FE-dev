@@ -1,4 +1,4 @@
-const flowers = ['🪴', '🌷', '🌾', '🌺'];
+const flowers = ['🌷', '🌾', '🌺'];
 
 const animals = [
     {
@@ -19,26 +19,16 @@ const animals = [
     }
 ];
 
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-}
+let capitalizeFirstLetter = (str) => str[0].toUpperCase() + str.slice(1);
 
-function renderObject(item) {
-    let optionsRender = []
-    for(let key in item){
-        optionsRender.push(`${capitalizeFirstLetter(key)}: ${item[key]}`);
-    }
+let renderObject = (item) => {
+    let optionsRender = Object.entries(item).map(([key, value]) => `${capitalizeFirstLetter(key)}: ${value}`);
     return `${optionsRender.join('<br>')}`;
-}
+};
 
 Array.prototype.renderList = function(tagName='ul') {
     let LIs = this
-        // .map(function(item){
-        //     let inspect = typeof item === 'object' ? `<li>${renderObject(item)}</li>` : `<li>${item}</li>`;
-        //     return inspect;
-        // })
-        .map(
-            (item) => {let inspect = typeof item === 'object' ? `<li>${renderObject(item)}</li>` : `<li>${item}</li>`})
+        .map((item) => {return inspect = typeof item === 'object' ? `<li>${renderObject(item)}</li>` : `<li>${item}</li>`})
         .join('');
 
     return `<${tagName}>${LIs}</${tagName}>`
