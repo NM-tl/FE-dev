@@ -28,7 +28,7 @@ let renderObject = (item) => {
 
 Array.prototype.renderList = function(tagName='ul') {
     let LIs = this
-        .map((item) => {return inspect = typeof item === 'object' ? `<li>${renderObject(item)}</li>` : `<li>${item}</li>`})
+        .map((item) => typeof item === 'object' ? `<li>${renderObject(item)}</li>` : `<li>${item}</li>`)
         .join('');
 
     return `<${tagName}>${LIs}</${tagName}>`
