@@ -7,7 +7,7 @@
 
 .list {
     width: 100%;
-    border-bottom: 1px solid black;
+    border-bottom: 5px solid #bfbfbf;
     padding: 20px 0px 20px;
     border-bottom-style: dotted;
 }
@@ -21,11 +21,22 @@
     align-content: center;
     justify-content: space-between;
     padding-top: 10px;
+    font-family: 'Quicksand';
+}
+
+.property {
+    opacity: 0.7;
+}
+
+.list__name {
+    font-family: 'Quicksand';
+    font-size: 20px;
+    letter-spacing: 1.5px;
 }
 
 .item {
     background: #d8d8e6;
-    width: 350px;
+    width: 300px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -44,3 +55,4 @@
 .icon {
     width: 80px;
 }
+
