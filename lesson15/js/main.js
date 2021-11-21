@@ -65,11 +65,6 @@ let Cosmetics = {category: 'cosmetics'}
 
 function RenderObjectProto(type, price, currency, picture) {
     this.type = type;
-
-    if(Array.isArray(price)) {
-        price.map((item)=>{(item)})    
-    }
-
     this.price = `${currency}${price}`;
     this.picture = picture;
 }
@@ -79,10 +74,10 @@ let pastryBog = new RenderObjectProto('Pastry-Bog', 25, '$','assets/images/kitch
 let scale = new RenderObjectProto('Scale', 5, '$','assets/images/kitchen/scale.svg');
 let whisk = new RenderObjectProto('Whisk', 15, '$','assets/images/kitchen/whisk.svg');
 
-let desktop = new RenderObjectProto('Desktop', devicesProducts[0].price, '$', 'assets/images/devices/desktop.svg');
-let laptop = new RenderObjectProto('Laptop', devicesProducts[1].price, '$','assets/images/devices/laptop.svg');
-let smartphone = new RenderObjectProto('Smartphone', devicesProducts[2].price, '$','assets/images/devices/smartphone.svg');
-let tablet = new RenderObjectProto('Tablet', devicesProducts[3].price, '$','assets/images/devices/tablet.svg');
+let desktop = new RenderObjectProto('Desktop', devicesProducts[0].price.join('-'), '$', 'assets/images/devices/desktop.svg');
+let laptop = new RenderObjectProto('Laptop', devicesProducts[1].price.join('-'), '$','assets/images/devices/laptop.svg');
+let smartphone = new RenderObjectProto('Smartphone', devicesProducts[2].price.join('-'), '$','assets/images/devices/smartphone.svg');
+let tablet = new RenderObjectProto('Tablet', devicesProducts[3].price.join('-'), '$','assets/images/devices/tablet.svg');
 
 let blush = new RenderObjectProto('Blush', 10, '$', 'assets/images/cosmetics/blush.svg');
 let eyeshadow = new RenderObjectProto('Eyeshadow', 10, '$', 'assets/images/cosmetics/eyeshadow.svg');
