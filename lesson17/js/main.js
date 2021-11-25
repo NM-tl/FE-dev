@@ -160,8 +160,8 @@ class Lector extends User {
 
     renderCourses() {
         return this.courses.length > 0 ? this.courses.map(({title, score, studentScore}) => `
-        <div class="user__courses ${this.role}--info">
-		    <div class="user__courses--course ${this.role}">
+        <div class="user__courses admin--info">
+		    <div class="user__courses--course lector">
          	    <p>Title: <b>${title}</b></p>
          	    <p>Lector's score: <span class="${this.renderMark(score)}">${this.renderMark(score)}</span></p>
          	    <p>Average student's score: <span class="${this.renderMark(studentScore)}">${this.renderMark(studentScore)}</span></p>
@@ -179,8 +179,8 @@ class Admin extends User {
     renderCourses() {
 
         return  this.courses.length > 0 ?this.courses.map(({title, score}) =>`
-        <div class="user__courses ${this.role}--info">
-		    <div class="user__courses--course ${this.role}">
+        <div class="user__courses admin--info">
+		    <div class="user__courses--course admin">
         	    <p>Title: <b>${title}</b></p>
         	    <p>Admin's score: <span class="${this.renderMark(score)}">${this.renderMark(score)}</span></p>
         	    <p>Lector: <b>${this.lector}</b></p>
@@ -216,7 +216,7 @@ const render = users.map(user => {
 
     return `
     <div class="user">${updateUser.render()}
-        <div class="user__courses ${this.role}">     
+        <div class="user__courses">     
             ${updateUser.renderCourses()}
         </div>
     </div>`
