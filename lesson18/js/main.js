@@ -1,3 +1,14 @@
+// Необходимо реализвовать функцию astrologicalSign, которая может возвращать:
+
+// название текущего знака зодиака (например, если сегодня 30.11, то текущий знак зодиака Sagittarius); Пример: astrologicalSign() => `Sagittarius`
+// название знака зодиака в зависимоти от переданного дня и месяца. Пример: astrologicalSign(29,`September`) => `Libra`
+// название знака зодиака для объекта в зависимости от его дня и месяца рождения, в контексте которого вызвана функция. Например: BillGates.astrologicalSign() => `Scorpio`.
+
+
+// Дано:
+
+// Объект astrologicalSigns в котором каждый вложенный объект содержит временной диапазон знака зодиака:
+
 const astrologicalSigns = {
     Aries: {
         startDate: {
@@ -121,6 +132,8 @@ const astrologicalSigns = {
     }
 }
 
+// Массив users:
+
 const users = [
     {
         name: 'Larry Page',
@@ -137,7 +150,26 @@ const users = [
         dayOfBirth: 14,
         monthOfBirth: `May`
     }
-]
+];
+
+// Задача:
+
+// Создать класс Time, который содержит:
+// статические геттеры: date, day, month, monthNames.
+// геттер date должен возвращать текущую дату – new Date()
+// геттер day должен возвращать текущий день – getUTCDate()
+// геттер month должен возвращать номер текущего месяц – getMonth()
+// геттер monthNames должен возвращать массив с перечнем месяцев – [`January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`];
+// статический метод monthName, который возвращает:
+// название текущего месяца, если при вызове метода номер месяца НЕ передан. Пример: Time.monthName() должен вернуть November.
+// название месяца, номер которого передан при вызове метода. Пример: Time.monthName(3) должен вернуть April.
+// Создать класс Astrological, который наследуется от класса Time и содержит:
+// статический метод astrologicalSign, который принимает на вход два параметра: day – день; month – название месяца. Пример: Astrological.astrologicalSign(29,`September`); Метод возвращает:
+// название знака зодиака, в зависимости от переданного дня и названия месяца. Пример: Astrological.astrologicalSign(29,`September`) => Libra.
+// название текущего знака зодиака, если метод вызван без параметров day и month. Astrological.astrologicalSign() => Sagittarius.
+// Создать класс Human, который наследуется от класса Astrological и содержит:
+// метод astrologicalSign, который возвращает строку с информацией о знаке зодиака юзера, в контексте которого вызывается. Пример: LarryPage.astrologicalSign() => `Larry Page is Aries`.
+// Каждый объект в заданном массиве users делаем экземпляром класса Human и в контексте каждого из юзеров вызываем метод astrologicalSign.
 
 class Time{
     get date() {
