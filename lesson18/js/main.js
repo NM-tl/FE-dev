@@ -1,14 +1,3 @@
-// Необходимо реализвовать функцию astrologicalSign, которая может возвращать:
-
-// название текущего знака зодиака (например, если сегодня 30.11, то текущий знак зодиака Sagittarius); Пример: astrologicalSign() => `Sagittarius`
-// название знака зодиака в зависимоти от переданного дня и месяца. Пример: astrologicalSign(29,`September`) => `Libra`
-// название знака зодиака для объекта в зависимости от его дня и месяца рождения, в контексте которого вызвана функция. Например: BillGates.astrologicalSign() => `Scorpio`.
-
-
-// Дано:
-
-// Объект astrologicalSigns в котором каждый вложенный объект содержит временной диапазон знака зодиака:
-
 const astrologicalSigns = {
     Aries: {
         startDate: {
@@ -132,8 +121,6 @@ const astrologicalSigns = {
     }
 }
 
-// Массив users:
-
 const users = [
     {
         name: 'Larry Page',
@@ -150,84 +137,74 @@ const users = [
         dayOfBirth: 14,
         monthOfBirth: `May`
     }
-];
+]
 
-// Задача:
+const toLowerCase = (str) => typeof srt === 'string' ? str.toLowerCase() : str
 
-// Создать класс Time, который содержит:
-// статические геттеры: date, day, month, monthNames.
-// геттер date должен возвращать текущую дату – new Date()
-// геттер day должен возвращать текущий день – getUTCDate()
-// геттер month должен возвращать номер текущего месяц – getMonth()
-// геттер monthNames должен возвращать массив с перечнем месяцев – [`January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`];
-// статический метод monthName, который возвращает:
-// название текущего месяца, если при вызове метода номер месяца НЕ передан. Пример: Time.monthName() должен вернуть November.
-// название месяца, номер которого передан при вызове метода. Пример: Time.monthName(3) должен вернуть April.
-// Создать класс Astrological, который наследуется от класса Time и содержит:
-// статический метод astrologicalSign, который принимает на вход два параметра: day – день; month – название месяца. Пример: Astrological.astrologicalSign(29,`September`); Метод возвращает:
-// название знака зодиака, в зависимости от переданного дня и названия месяца. Пример: Astrological.astrologicalSign(29,`September`) => Libra.
-// название текущего знака зодиака, если метод вызван без параметров day и month. Astrological.astrologicalSign() => Sagittarius.
-// Создать класс Human, который наследуется от класса Astrological и содержит:
-// метод astrologicalSign, который возвращает строку с информацией о знаке зодиака юзера, в контексте которого вызывается. Пример: LarryPage.astrologicalSign() => `Larry Page is Aries`.
-// Каждый объект в заданном массиве users делаем экземпляром класса Human и в контексте каждого из юзеров вызываем метод astrologicalSign.
-
-class Time{
-    get date() {
-        const date = new Date();
-        return date.getDate();
+class Time {
+    static get date() {
+        return new Date()
     }
 
-    get day() {
-        const day = new Date();
-        return day.getUTCDate();
+    static get day() {
+        return Time.date.getUTCDate();
     }
 
-    get month() {
-        const today = new Date();
-        return today.getMonth();
+    static get month() {
+        return Time.date.getMonth();
     }
 
-    get monthNames() {
-        return [`January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`];
+    static get monthNames() {
+        return ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     }
 
-    static monthName() {
-        const monthName = this.monthNames[11];
+    static monthName(number) {
+        return typeof number === 'number' && number > 0 && number < 12 ? Time.monthNames[number - 1] : Time.date.toLocaleString('en-us', {month: 'long'});
 
-        if(!monthName){
-            return monthName.toLocaleString('en-us', { month: 'long' })
-        } else {
-            return monthName;
-        };
-
-    }
-
-
-
-    renderTime(){
-        return `Current date: ${this.date},${this.day}
-        Month: ${this.month}, ${this.monthName}`
     }
 }
 
-let test = new Time();
-console.log(test.renderTime());
-console.log(test.monthName);
+const getAstrological = (day, month) => Object.entries(astrologicalSigns).reduce((acc, [key, item]) => {
+    if ((toLowerCase(item?.startDate?.month) === toLowerCase(month) && Number(day) >= Number(item?.startDate?.day)) ||
+        (toLowerCase(item?.endDate?.month) === toLowerCase(month) && Number(day) <= Number(item?.endDate?.day))) {
+        acc = key
+    }
+    return acc
+}, '')
 
-class Astrological extends Time{
+class Astrological extends Time {
+    constructor() {
+        super();
+    }
 
-    static astrologicalSign(super.date, super.month){
-        const sign = [29, 'September'];
-        if(!sign || sign !== []){
-            return `Sagittarlus`;
-        } else {
-            return `Libra`;
+    static astrologicalSign(day, month) {
+
+        if (typeof day === 'number' && typeof month === 'string') {
+
+            return getAstrological(day, month)
         }
+
+        return getAstrological(Astrological.day, Astrological.monthName())
     }
 }
 
-class Human extends Astrological{
-    astrologicalSign(){
+class Human extends Astrological {
+    constructor(props) {
+        super();
+        this.name = props?.name || '';
+        this.dayOfBirth = props?.dayOfBirth || '';
+        this.monthOfBirth = props?.monthOfBirth || '';
+    }
 
+    astrologicalSign() {
+        return `${this.name} is ${Human.astrologicalSign(this.dayOfBirth, this.monthOfBirth)}`
     }
 }
+
+let LarryPage = new Human(users[0]);
+let BillGates = new Human(users[1]);
+let MarkZuckerberg = new Human(users[2]);
+
+console.log(LarryPage.astrologicalSign());
+console.log(BillGates.astrologicalSign());
+console.log(MarkZuckerberg.astrologicalSign());
