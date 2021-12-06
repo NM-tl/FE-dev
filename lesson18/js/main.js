@@ -139,7 +139,7 @@ const users = [
     }
 ]
 
-const toLowerCase = (str) => typeof srt === 'string' ? str.toLowerCase() : str
+const toLowerCase = (str) => typeof srt === 'string' ? str.toLowerCase() : str;
 
 class Time {
     static get date() {
