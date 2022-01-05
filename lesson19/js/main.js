@@ -18,7 +18,7 @@ setInterval(
         const g = Math.floor(Math.random() * 256);
         const b = Math.floor(Math.random() * 256);
         block.style.backgroundColor = "rgb(" + r + "," + g + "," + b + ")";
-    }, 1000
+    }, 1500
 )
 
 function Moving(){
