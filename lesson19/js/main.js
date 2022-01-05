@@ -1,43 +1,45 @@
-// С помощью функции setInterval, каждые пол секунды меняем цвет квадрата на любой рандомный цвет.
-// Можно сформировать массив с цветами и с него брать рандомное значение.
-// Можно написать функцию, которая будет возвращать строку `rgb(color_1, color_2, color_3)`, в которой color_1, color_2, color_3 это рандомное значение в диапазоне от 0 до 255 включительно.
-// С помощью функции setInterval, каждую секунду перемещаем квадрат на любое место в пределах body. Для этого квадрату задаем рандомные значения свойств left и top. Квадрат не должен выходить за пределы body.
-
-
-
 const block = document.querySelector(`.block`);
+let xPosition = 10;
+let yPosition = 10;
+let xSpeed = 4;
+let ySpeed = 4;
+const FPS = 60;
 
-const maxOffsetLeft = window.innerWidth - block.offsetWidth;
-const maxOffsetTop = window.innerHeight - block.offsetHeight;
+// const Colors = ['red', 'blue', 'aqua', 'brown', 'aquamarine', 'green', 'purple', 'grey', 'black'];
+//
+// setInterval(function (){
+//     const random = Math.floor(Math.random() * Colors.length);
+//     block.style.background = Colors[random];
+// }, 1000)
 
-console.log(window.innerWidth, maxOffsetLeft)
+setInterval(
+    function RandomColor() {
+        const r = Math.floor(Math.random() * 256);
+        const g = Math.floor(Math.random() * 256);
+        const b = Math.floor(Math.random() * 256);
+        block.style.backgroundColor = "rgb(" + r + "," + g + "," + b + ")";
+    }, 1000
+)
 
-const Move = 5;
+function Moving(){
+    block.style.left = xPosition + 'px';
+    block.style.top = yPosition + 'px';
+}
 
-// window.onload = event => {
+setInterval(() =>{
+    if(xPosition + block.clientWidth >= window.innerWidth || xPosition <= 0){
+        xSpeed = -xSpeed;
+    }
 
-//     let nextOffsetLeft = block.offsetLeft + Move;       
-    
-//     block.style.marginLeft = `${parseInt(block.marginLeft) - Move}px`;
+    if(yPosition + block.clientHeight >= window.innerHeight || yPosition <= 0){
+        ySpeed = -ySpeed;
+    }
 
-//     setInterval(function (){
-//         block.style.marginLeft = !block.marginLeft ? `${Move}px` : `${parseInt(block.marginLeft) + Move}px`
-//     }, 1000)
-    
+    xPosition += xSpeed;
+    yPosition += ySpeed;
+    Moving();
+}, 1000/FPS)
 
-//     console.dir(block.offsetWidth)
-// }
-
-const Colors = ['red', 'blue', 'aqua', 'brown', 'aquamarine', 'green', 'purple', 'grey', 'black'];
-
-setInterval(function (){
-    const random = Math.floor(Math.random() * Colors.length);
-    block.style.background = Colors[random];
-}, 500)
-
-setInterval(function (){
-    block.style.left = `${parseInt(block.style.left) + Move}px`
-}, 1000)
-
-console.log(block.offsetHeight)
-console.log(block.offsetWidth)
+block.onclick = function() {
+    alert('Im caught 🙃');
+}
