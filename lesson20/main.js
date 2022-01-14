@@ -80,7 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (event.code === 'ControlLeft') {
-
             block.style.height = `${block.offsetHeight - block.offsetHeight * 0.4}px`;
             block.style.width = `${block.offsetWidth + block.offsetWidth / 4}px`;
         }
