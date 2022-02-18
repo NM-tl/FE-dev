@@ -1,8 +1,3 @@
-const Data = [
-    ["user1", "info1"],
-    ["user2", "info2"]
-]
-
 const Users = [
     {name: "Alise", age: 20},
     {name: "Drew", age: 25},
@@ -16,18 +11,10 @@ const capitalize = str =>
 
 const randomHex = () => `#${Math.floor(Math.random() * 0xffffff).toString(16).padEnd(6, "0")}`;
 
-// const buildTd = (td) =>
-//     `<td>${Array.isArray(td) ? td.join(separator) : td}</td>`;
-
-// const buildTdList = (tds) =>
-//     Array.isArray(tds) ? tds.map((i) => buildTd(i)).join("") : buildTd(tds);
-
 let renderObject = (i) => {
-    let optionsRender = Object.entries(i).map(([key, value]) => `${key}: ${value}`);
-    return `<td>${optionsRender.join(' ')}</td>`;
+    let optionsRender = Object.entries(i).map(([key, value]) => `<td>${capitalize(key).bold()}: ${value}</td>`);
+    return `${optionsRender.join(' ')}`;
 };
-
-console.log(renderObject(Users));
 
 Array.prototype.renderList = function() {
     let Tr = this
@@ -36,14 +23,6 @@ Array.prototype.renderList = function() {
 
     return `${Tr}`
 }
-
-console.log(Users.renderList())
-
-// const buildTrs = (tr) =>
-//     `${Users.renderList(tr)}`;
-//
-// const buildTrList = (trs) =>
-//     Array.isArray(trs) ? trs.map((i) => buildTrs(i)) : buildTrs(i);
 
 function buildData (arr, str) {
     return `<section>
